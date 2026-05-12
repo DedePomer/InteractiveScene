@@ -1,5 +1,5 @@
-using UnityEngine;
 using Core.Model;
+using UnityEngine;
 
 namespace Core.Scene
 {
@@ -8,7 +8,7 @@ namespace Core.Scene
         [Header("Object Info")]
         [SerializeField] private string objectName = "SceneObject";
 
-        
+
         public bool IsVisible
         {
             get => _isVisible;

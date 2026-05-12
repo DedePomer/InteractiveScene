@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core.Scene
-{ 
+{
     [System.Serializable]
     public class SceneObjectRegistry : MonoBehaviour
     {

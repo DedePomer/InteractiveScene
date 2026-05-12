@@ -1,12 +1,12 @@
+using Core.Scene;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Core.Scene;
 
 
 namespace Core.Ui
-{ 
+{
     public class SceneObjectListItemView : MonoBehaviour
     {
         [Header("Controls")]
