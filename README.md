@@ -9,6 +9,7 @@
 
 
 На скриншоте видны две панели: 
+
 <img width="282" height="880" alt="изображение" src="https://github.com/user-attachments/assets/89ccde2c-dcda-4cfb-9d8c-60361be48e80" />
 
 ## Верхняя
