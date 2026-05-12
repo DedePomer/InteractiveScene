@@ -1,0 +1,94 @@
+{
+    "name": "InputSystem",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "db8b8f6a-7aed-4f35-a0ee-0ee96ac76255",
+            "actions": [
+                {
+                    "name": "Pan",
+                    "type": "Value",
+                    "id": "da0cbc77-6def-4b2c-b909-98ec39189975",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PanHold",
+                    "type": "Button",
+                    "id": "cff4bb54-be8f-4246-9304-356e65d67f1e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "955906c5-3060-45e0-b849-9c952b60dd4f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "51f25e1a-c9a9-4c2f-8504-066c088ee382",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1fa33660-ef73-44c4-92bf-b74b1effe43e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pan",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "556a14e1-dc12-4ccd-9cde-2a4376ad69b5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PanHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "64c8ec5d-02af-4517-afb0-62a5c7c6f355",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c2ec2279-13ba-40d6-8afc-ea98ac46c9fe",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
