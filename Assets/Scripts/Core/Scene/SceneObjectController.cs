@@ -6,7 +6,7 @@ namespace Core.Scene
     public class SceneObjectController : MonoBehaviour
     {
         [Header("Object Info")]
-        [SerializeField] private string objectName = "SceneObject";
+        [SerializeField] public string objectName = "SceneObject";
 
 
         public bool IsVisible
@@ -38,6 +38,7 @@ namespace Core.Scene
             _currentColor = _renderer.sharedMaterial.color;
 
         }
+
 
         public void SetColor(Color color)
         {

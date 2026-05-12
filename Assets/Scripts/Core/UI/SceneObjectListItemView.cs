@@ -43,7 +43,7 @@ namespace Core.Ui
         public void Init(SceneObjectController obj)
         {
             _sceneObjectController = obj;
-            nameText.text = obj.name;
+            nameText.text = obj.objectName;
 
 
             chooseButton.onClick.AddListener(() => OnChoosed());
