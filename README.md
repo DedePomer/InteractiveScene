@@ -25,7 +25,7 @@ Alt+S - загрузить объекты
 
 
 # Технологии
-Unity 2021.3
-C#
-Unity Input System
-StandaloneFileBrowser
+- Unity 2021.3
+- C#
+- Unity Input System
+- StandaloneFileBrowser
