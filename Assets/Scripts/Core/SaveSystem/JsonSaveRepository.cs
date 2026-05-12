@@ -8,18 +8,17 @@ namespace Core.SaveSystemm
     public class JsonSaveRepository: MonoBehaviour
     {
         private const string DefaultFileName = "objects.json";
+        public  string FilePath { get; set; }
 
-        private readonly string _filePath;
-        
-        public JsonSaveRepository(string folderPath, string fileName = DefaultFileName)
+        private void Awake()
         {
-            _filePath = Path.Combine(folderPath, fileName);
+            FilePath = Path.Combine(Application.persistentDataPath, DefaultFileName);
         }
 
         public void Save(List<SceneObjectData> data)
         {
             string json = JsonUtility.ToJson(data, prettyPrint: true);
-            File.WriteAllText(_filePath, json);
+            File.WriteAllText(FilePath, json);
         }
 
         public List<SceneObjectData> Load()
@@ -29,11 +28,11 @@ namespace Core.SaveSystemm
                 Debug.LogError("load return null", this);
                 return null;
             }
-            string json = File.ReadAllText(_filePath);
+            string json = File.ReadAllText(FilePath);
             return JsonUtility.FromJson<List<SceneObjectData>>(json);
         }
 
-        public bool HasExist() => File.Exists(_filePath);
+        public bool HasExist() => File.Exists(FilePath);
     }
 }
 

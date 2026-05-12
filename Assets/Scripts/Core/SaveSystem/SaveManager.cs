@@ -2,44 +2,32 @@ using Core.Model;
 using Core.Scene;
 using System.Collections.Generic;
 using UnityEngine;
+using SFB;
 
 namespace Core.SaveSystemm
 {
 
-    [DisallowMultipleComponent, RequireComponent(typeof(SaveManagerInput))]
+    [DisallowMultipleComponent, RequireComponent(typeof(SaveManagerInput), typeof(JsonSaveRepository))]
     public class SaveManager : MonoBehaviour
     {
-        // жалко что интерфейсы нельзя серилизовать
-        [SerializeField] private JsonSaveRepository saveRepository;
         [SerializeField] private SceneObjectRegistry sceneObjectRegistry;
 
+        private JsonSaveRepository _saveRepository;
         private SaveManagerInput _saveManagerInput;
 
         private void Awake()
         {
             _saveManagerInput = GetComponent<SaveManagerInput>();
+            _saveRepository = GetComponent<JsonSaveRepository>();
         }
 
         private void Update()
         {
-
+            Save();
+            Load();
         }
 
-        public void OpenFolderAndSave()
-        {
-            var dialog = new FolderBrowserDialog
-            {
-                Description = "Выберите папку для сохранения",
-                SelectedPath = Application.persistentDataPath,
-                ShowNewFolderButton = true
-            };
 
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                _repository = new JsonSaveRepository(dialog.SelectedPath);
-                Save();
-            }
-        }
 
 
 
@@ -47,21 +35,44 @@ namespace Core.SaveSystemm
         {
             if (!_saveManagerInput.IsSave)
                 return;
+            if (!IsFolderDialogClose())
+                return;
+
+            Debug.Log("Save");
             var data = GetDataFromSceneObject(sceneObjectRegistry.GetAll());
-            saveRepository.Save(data);
+            _saveRepository.Save(data);
         }
 
         public void Load()
         {
             if (!_saveManagerInput.IsLoad)
                 return;
-            if (!saveRepository.HasExist())
+            if(!IsFolderDialogClose())
+                return;
+            if (!_saveRepository.HasExist())
             {
                 Debug.LogError("file dont exist", this);
                 return;
             }
 
-            var data = saveRepository.Load();
+            Debug.Log("Load");
+            var data = _saveRepository.Load();
+        }
+
+        public bool IsFolderDialogClose()
+        {
+            string[] paths = StandaloneFileBrowser.OpenFolderPanel(
+                title: "Choose directory",
+                directory: Application.persistentDataPath,
+                multiselect: false
+            );
+
+            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+            {
+                _saveRepository.FilePath = paths[0];
+                return true;
+            }
+            return false;
         }
 
         private List<SceneObjectData> GetDataFromSceneObject(IReadOnlyList<SceneObjectController> scenObjects)

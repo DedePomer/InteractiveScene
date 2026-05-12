@@ -88,6 +88,76 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Save/Load",
+            "id": "b8216dbf-34c7-4d6c-9e09-504a553a119c",
+            "actions": [
+                {
+                    "name": "Save",
+                    "type": "Button",
+                    "id": "c0bee63e-ad51-4909-ba65-93862af12e24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Load",
+                    "type": "Button",
+                    "id": "df987ce5-cdbd-4245-93fb-c51d4ffaa9d3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "One Modifier",
+                    "id": "6a8debc7-20dd-49cc-85fe-7f87be0d9fbd",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Save",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "5d72210c-e0b7-4dce-a1ae-5063862c6ea1",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Save",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "a5340a05-d339-4f13-8283-beb6026f73b9",
+                    "path": "<Keyboard>/ctrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Save",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "e1748ff6-804f-49de-b260-6c847f826b12",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

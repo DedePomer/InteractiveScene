@@ -95,12 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3322d7c7c1ab0a459253ebd47bdfd64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nameText: {fileID: 4267356344780129367}
-  _colorButtonR: {fileID: 4134753147980945599}
-  _colorButtonG: {fileID: 8823435132611057617}
-  _colorButtonB: {fileID: 5538365379119012835}
-  _selectToggle: {fileID: 5318986524679550143}
-  _chooseButton: {fileID: 6354434136879672380}
+  nameText: {fileID: 4267356344780129367}
+  colorButtonR: {fileID: 4134753147980945599}
+  colorButtonG: {fileID: 8823435132611057617}
+  colorButtonB: {fileID: 5538365379119012835}
+  selectToggle: {fileID: 5318986524679550143}
+  chooseButton: {fileID: 6354434136879672380}
 --- !u!1 &313144404127911515
 GameObject:
   m_ObjectHideFlags: 0

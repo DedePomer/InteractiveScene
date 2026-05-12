@@ -6,7 +6,7 @@ using Core.Scene;
 
 
 namespace Core.Ui
-{
+{ 
     public class SceneObjectListItemView : MonoBehaviour
     {
         [Header("Controls")]
