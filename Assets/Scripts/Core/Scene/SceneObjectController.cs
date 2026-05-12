@@ -59,18 +59,12 @@ namespace Core.Scene
                 colorHex = ColorUtility.ToHtmlStringRGBA(_currentColor),
                 alpha = _currentAlpha,
                 isVisible = IsVisible,
-                position = transform.position,
-                rotation = transform.eulerAngles,
-                scale = transform.localScale
             };
         }
 
         public void LoadObjectData(SceneObjectData data)
         {
             objectName = data.name;
-            transform.position = data.position;
-            transform.eulerAngles = data.rotation;
-            transform.localScale = data.scale;
 
             Color c;
             if (ColorUtility.TryParseHtmlString("#" + data.colorHex, out c))

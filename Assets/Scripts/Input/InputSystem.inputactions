@@ -147,15 +147,37 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "e1748ff6-804f-49de-b260-6c847f826b12",
-                    "path": "",
+                    "name": "One Modifier",
+                    "id": "d44cc663-aa07-4583-910b-3be4d666c544",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Load",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "1f090ef2-caa3-4d68-9035-c1b5eec9fa71",
+                    "path": "<Keyboard>/alt",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Load",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "6a6da90e-96b8-4e5f-b602-9e9c4b76960a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Load",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
