@@ -8,7 +8,7 @@ namespace Core.Camera
     public class CameraController : MonoBehaviour
     {
         [Header("Target")]
-        [SerializeField] private Transform? target;
+        [SerializeField] private Transform target;
 
         [Header("Distance")]
         [SerializeField] private float orbitDistance = 3f;
