@@ -20,7 +20,7 @@ namespace Core.Scene
         }
 
         private bool _isVisible = true;
-        private Renderer? _renderer;
+        private Renderer _renderer;
         private MaterialPropertyBlock _mpb;
         private Color _currentColor = Color.white;
         private float _currentAlpha = 1f;
