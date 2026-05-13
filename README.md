@@ -27,7 +27,7 @@
 
 
 # Технологии
-- Unity 2021.3
+- Unity 2021.3.45f
 - C#
 - Unity Input System
 - StandaloneFileBrowser
