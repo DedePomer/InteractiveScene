@@ -1,4 +1,5 @@
-using Core.Model;
+﻿using Core.Model;
+using Core.SaveSystemm;
 using Core.Scene;
 using Newtonsoft.Json;
 using SFB;
@@ -6,53 +7,34 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace Core.SaveSystemm
+namespace Core.SaveSystem
 {
 
-    [DisallowMultipleComponent, RequireComponent(typeof(SaveManagerInput))]
-    public class SaveManager : MonoBehaviour
+    [DisallowMultipleComponent, RequireComponent(typeof(SaveLoadInput))]
+    public class SaveLoadController : MonoBehaviour
     {
         private const string FileExtension = "json";
         private const string DefaultFileName = "save";
         private const string DefaultLoadTitle = "Load file";
         private const string DefaultSaveTitle = "Save file";
 
-
         [SerializeField] private SceneObjectRegistry sceneObjectRegistry;
 
-        private SaveManagerInput _saveManagerInput;
         private string _filePath;
-
-        private void Awake()
+        private void OnEnable()
         {
-            _saveManagerInput = GetComponent<SaveManagerInput>();
+            SaveLoadInput.OnLoad += Load;
+            SaveLoadInput.OnSave += Save;
         }
 
-        private void Update()
+        private void OnDisable()
         {
-            Save();
-            Load();
-        }
-
-
-        public void Save()
-        {
-            if (!_saveManagerInput.IsSave)
-                return;
-            if (!IsSaveDialogClose())
-                return;
-
-
-            var data = GetDataFromSceneObject(sceneObjectRegistry.GetAll());
-            string json = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
-            File.WriteAllText(_filePath, json);
-            Debug.Log("Saved");
+            SaveLoadInput.OnLoad -= Load;
+            SaveLoadInput.OnSave -= Save;
         }
 
         public void Load()
         {
-            if (!_saveManagerInput.IsLoad)
-                return;
             if (!IsLoadDialogClose())
                 return;
             if (!FileHasExist())
@@ -67,24 +49,19 @@ namespace Core.SaveSystemm
             Debug.Log("Loaded");
         }
 
-        public bool IsLoadDialogClose()
+        public void Save()
         {
-            string[] paths = StandaloneFileBrowser.OpenFilePanel(
-                title: DefaultLoadTitle,
-                directory: Application.persistentDataPath,
-                extension: FileExtension,
-                multiselect: false
-            );
+            if (!IsSaveDialogClose())
+                return;
 
-            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
-            {
-                _filePath = paths[0];
-                return true;
-            }
-            return false;
+
+            var data = GetDataFromSceneObject(sceneObjectRegistry.GetAll());
+            string json = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(_filePath, json);
+            Debug.Log("Saved");
         }
 
-        public bool IsSaveDialogClose()
+        private bool IsSaveDialogClose()
         {
             string path = StandaloneFileBrowser.SaveFilePanel(
                 title: DefaultSaveTitle,
@@ -96,6 +73,23 @@ namespace Core.SaveSystemm
             if (!string.IsNullOrEmpty(path))
             {
                 _filePath = path;
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsLoadDialogClose()
+        {
+            string[] paths = StandaloneFileBrowser.OpenFilePanel(
+                title: DefaultLoadTitle,
+                directory: Application.persistentDataPath,
+                extension: FileExtension,
+                multiselect: false
+            );
+
+            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+            {
+                _filePath = paths[0];
                 return true;
             }
             return false;
@@ -121,8 +115,6 @@ namespace Core.SaveSystemm
             {
                 sceneObjects[i].LoadObjectData(scenObjectsData[i]);
             }
-
-
         }
 
         private bool FileHasExist() => File.Exists(_filePath);

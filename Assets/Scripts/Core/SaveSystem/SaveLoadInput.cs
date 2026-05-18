@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 namespace Core.SaveSystemm
 {
-    public class SaveManagerInput : MonoBehaviour
+    public class SaveLoadInput : MonoBehaviour
     {
         [Header("Inputs")]
         [SerializeField] private InputActionReference saveAction;
         [SerializeField] private InputActionReference loadAction;
 
-
-        public bool IsLoad { get; private set; }
-        public bool IsSave { get; private set; }
+        public static event SaveLoadDelegate OnSave;
+        public static event SaveLoadDelegate OnLoad;
+        public delegate void SaveLoadDelegate();
 
 
         private void OnEnable()
@@ -28,8 +28,23 @@ namespace Core.SaveSystemm
 
         private void Update()
         {
-            IsLoad = loadAction.action.IsPressed();
-            IsSave = saveAction.action.IsPressed();
+            Save();
+            Load();
+        }
+
+
+        public void Save()
+        {
+            if (!saveAction.action.IsPressed())
+                return;
+            OnSave?.Invoke();
+        }
+
+        public void Load()
+        {
+            if (!loadAction.action.IsPressed())
+                return;
+            OnLoad?.Invoke();
         }
     }
 }
