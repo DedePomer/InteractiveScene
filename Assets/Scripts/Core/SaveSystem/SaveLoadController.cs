@@ -19,18 +19,24 @@ namespace Core.SaveSystem
         private const string DefaultSaveTitle = "Save file";
 
         [SerializeField] private SceneObjectRegistry sceneObjectRegistry;
+        [SerializeField] private SaveLoadInput saveLoadInput;
 
         private string _filePath;
+
+        private void Awake()
+        {
+            saveLoadInput = GetComponent<SaveLoadInput>();
+        }
         private void OnEnable()
         {
-            SaveLoadInput.OnLoad += Load;
-            SaveLoadInput.OnSave += Save;
+            saveLoadInput.OnLoad += Load;
+            saveLoadInput.OnSave += Save;
         }
 
         private void OnDisable()
         {
-            SaveLoadInput.OnLoad -= Load;
-            SaveLoadInput.OnSave -= Save;
+            saveLoadInput.OnLoad -= Load;
+            saveLoadInput.OnSave -= Save;
         }
 
         public void Load()

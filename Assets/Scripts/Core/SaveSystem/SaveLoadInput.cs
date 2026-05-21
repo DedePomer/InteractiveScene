@@ -9,8 +9,8 @@ namespace Core.SaveSystemm
         [SerializeField] private InputActionReference saveAction;
         [SerializeField] private InputActionReference loadAction;
 
-        public static event SaveLoadDelegate OnSave;
-        public static event SaveLoadDelegate OnLoad;
+        public event SaveLoadDelegate OnSave;
+        public event SaveLoadDelegate OnLoad;
         public delegate void SaveLoadDelegate();
 
 
@@ -18,32 +18,27 @@ namespace Core.SaveSystemm
         {
             saveAction?.action.Enable();
             loadAction?.action.Enable();
+
+            saveAction.action.performed += SaveAction_OnPerformed;
+            loadAction.action.performed += LoadAction_OnPerformed;
         }
 
         private void OnDisable()
         {
             saveAction?.action.Disable();
             loadAction?.action.Disable();
+
+            saveAction.action.performed -= SaveAction_OnPerformed;
+            loadAction.action.performed -= LoadAction_OnPerformed;
         }
-
-        private void Update()
+     
+        private void SaveAction_OnPerformed(InputAction.CallbackContext ctx)
         {
-            Save();
-            Load();
-        }
-
-
-        public void Save()
-        {
-            if (!saveAction.action.IsPressed())
-                return;
             OnSave?.Invoke();
         }
 
-        public void Load()
+        private void LoadAction_OnPerformed(InputAction.CallbackContext ctx)
         {
-            if (!loadAction.action.IsPressed())
-                return;
             OnLoad?.Invoke();
         }
     }
