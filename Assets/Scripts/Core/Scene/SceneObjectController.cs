@@ -21,12 +21,12 @@ namespace Core.Scene
 
         private bool _isVisible = true;
         private Renderer _renderer;
-        private MaterialPropertyBlock _mpb;
+        private MaterialPropertyBlock _materialPropertyBlock;
         private Color _currentColor = Color.white;
         private float _currentAlpha = 1f;
 
 
-        void Awake()
+        private void Awake()
         {
             _renderer = GetComponent<Renderer>();
             if (_renderer == null)
@@ -34,7 +34,7 @@ namespace Core.Scene
                 Debug.LogError("renderer is null", this);
                 return;
             }
-            _mpb = new MaterialPropertyBlock();
+            _materialPropertyBlock = new MaterialPropertyBlock();
             _currentColor = _renderer.sharedMaterial.color;
 
         }
@@ -79,9 +79,9 @@ namespace Core.Scene
         {
             gameObject.SetActive(IsVisible);
 
-            _renderer.GetPropertyBlock(_mpb);
-            _mpb.SetColor("_Color", new Color(_currentColor.r, _currentColor.g, _currentColor.b, _currentAlpha));
-            _renderer.SetPropertyBlock(_mpb);
+            _renderer.GetPropertyBlock(_materialPropertyBlock);
+            _materialPropertyBlock.SetColor("_Color", new Color(_currentColor.r, _currentColor.g, _currentColor.b, _currentAlpha));
+            _renderer.SetPropertyBlock(_materialPropertyBlock);
         }
     }
 }

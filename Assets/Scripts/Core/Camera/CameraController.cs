@@ -1,6 +1,5 @@
 using Core.Scene;
 using Core.Ui;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core.Camera
