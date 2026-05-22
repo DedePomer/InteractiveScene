@@ -14,7 +14,6 @@ namespace Core.Camera
         public Vector2 PanDelta { get; private set; }
         public bool IsPanning { get; private set; }
         public bool IsRotating { get; private set; }
-
         public float Zoom { get; private set; }
 
         private void OnEnable()

@@ -15,7 +15,7 @@ namespace Core.Camera
         [SerializeField] private float zoomMinDistance = 1.5f;
         [SerializeField] private float zoomMaxDistance = 7f;
 
-        [Header("Movment")]
+        [Header("Movement")]
         [SerializeField] private float cameraSpeed = 1.0f;
         [SerializeField] private float rotationSpeed = 3f;
         [SerializeField] private float zoomSpeed = 0.4f;

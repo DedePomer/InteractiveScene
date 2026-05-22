@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Core.Ui
 {
+    [DisallowMultipleComponent]
     public class SelectedPanelView : MonoBehaviour
     {
         [Header("References")]

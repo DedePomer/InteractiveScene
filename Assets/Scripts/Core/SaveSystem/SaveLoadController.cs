@@ -43,9 +43,9 @@ namespace Core.SaveSystem
         {
             if (!IsLoadDialogClose())
                 return;
-            if (!FileHasExist())
+            if (!FileExist())
             {
-                Debug.LogError("file has't exist", this);
+                Debug.LogError("file did not load", this);
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace Core.SaveSystem
             }
         }
 
-        private bool FileHasExist() => File.Exists(_filePath);
+        private bool FileExist() => File.Exists(_filePath);
 
     }
 }
