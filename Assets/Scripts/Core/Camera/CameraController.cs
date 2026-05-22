@@ -31,11 +31,6 @@ namespace Core.Camera
         private float _yaw = 0;
         private float _pitch;
 
-        private void OnEnable()
-        {
-
-        }
-
         private void Awake()
         {
             _cameraInput = GetComponent<CameraInputController>();
