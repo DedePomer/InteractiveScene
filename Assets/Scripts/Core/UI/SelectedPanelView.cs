@@ -17,17 +17,17 @@ namespace Core.Ui
         [SerializeField] private Toggle visibleToggle;
         [SerializeField] private Slider opacitySlider;
 
-        private readonly List<SceneObjectListItemView> _items = new();
+        public readonly List<SceneObjectListItemView> SceneObjectItems = new();
 
-        private void Start()
+        private void Awake()
         {
             foreach (var sceneObject in sceneObjectRegistry.GetAll())
             {
                 var item = Instantiate(objectListItemPrefab, content);
                 item.Init(sceneObject);
-                _items.Add(item);
+                SceneObjectItems.Add(item);
             }
-            Init(_items);
+            Init(SceneObjectItems);
         }
 
         public void Init(List<SceneObjectListItemView> items)
@@ -39,12 +39,12 @@ namespace Core.Ui
 
         private List<SceneObjectListItemView> GetSelectedItems()
         {
-            List<SceneObjectListItemView> selectedItems = _items.Where(x => x.IsSelected == true).ToList();
+            List<SceneObjectListItemView> selectedItems = SceneObjectItems.Where(x => x.IsSelected == true).ToList();
             return selectedItems;
         }
         private void OnAllSelectChanged(bool value)
         {
-            foreach (var obj in _items)
+            foreach (var obj in SceneObjectItems)
                 obj.IsSelected = value;
         }
 

@@ -45,7 +45,7 @@ namespace Core.SaveSystem
                 return;
             if (!FileHasExist())
             {
-                Debug.LogError("file dont exist", this);
+                Debug.LogError("file has't exist", this);
                 return;
             }
 

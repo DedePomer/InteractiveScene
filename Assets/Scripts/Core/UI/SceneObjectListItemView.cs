@@ -17,11 +17,8 @@ namespace Core.Ui
         [SerializeField] private Toggle selectToggle;
         [SerializeField] private Button chooseButton;
 
-        public static event Func<SceneObjectController, Transform> OnObjectSelectedEvent;
-        public static void SelectObject(SceneObjectController obj)
-        {
-            OnObjectSelectedEvent?.Invoke(obj);
-        }
+        public event Func<SceneObjectController, Transform> OnObjectSelected;
+
 
         public bool IsSelected
         {
@@ -39,6 +36,11 @@ namespace Core.Ui
         private readonly Color _colorB = Color.blue;
 
         private SceneObjectController _sceneObjectController;
+
+        public void SelectObject(SceneObjectController obj)
+        {
+            OnObjectSelected?.Invoke(obj);
+        }
 
         public void Init(SceneObjectController obj)
         {

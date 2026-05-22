@@ -1,5 +1,6 @@
 using Core.Scene;
 using Core.Ui;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Core.Camera
@@ -22,24 +23,38 @@ namespace Core.Camera
         [SerializeField] private float minPitch = -80f;
         [SerializeField] private float maxPitch = 80f;
 
+        [Space]
+        [SerializeField] private SelectedPanelView selectedPanelView;
+
 
         private CameraInputController _cameraInput;
         private float _yaw = 0;
         private float _pitch;
+
+        private void OnEnable()
+        {
+
+        }
 
         private void Awake()
         {
             _cameraInput = GetComponent<CameraInputController>();
         }
 
-        private void OnEnable()
+        private void Start()
         {
-            SceneObjectListItemView.OnObjectSelectedEvent += ObjectChanged;
+            foreach (var sceneObject in selectedPanelView.SceneObjectItems)
+            {
+                sceneObject.OnObjectSelected += ObjectChanged;
+            }
         }
 
         private void OnDisable()
         {
-            SceneObjectListItemView.OnObjectSelectedEvent -= ObjectChanged;
+            foreach (var sceneObject in selectedPanelView.SceneObjectItems)
+            {
+                sceneObject.OnObjectSelected -= ObjectChanged;
+            }
         }
 
         private void Update()
